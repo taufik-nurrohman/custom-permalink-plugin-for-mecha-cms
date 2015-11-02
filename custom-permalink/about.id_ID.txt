@@ -1,0 +1,33 @@
+Title: Custom Permalink
+Author: Taufik Nurrohman
+URL: http://latitudu.com
+Version: 1.0.0
+
+====
+
+> Custom permanent link.
+
+_Permalink_ adalah tautan permanen pada artikel blog Anda. Pada dasarnya, **Mecha** mengizinkan Anda untuk mengubah pola URL artikel dengan cara mengubah nama slug pusat dari URL artikel menjadi seperti yang Anda inginkan melalui halaman konfigurasi. Plugin ini memungkinkan Anda untuk melakukan lebih dari itu, bukan hanya untuk mengubah nama slug pusat, tetapi juga untuk mengubah struktur segmen URL secara total.
+
+#### Pola yang Tersedia
+
+Dengan atau tanpa ekstensi.
+
+~~~ .no-highlight
+:pusat/:id
+:pusat/:id/:slug
+:pusat/:slug (bawaan)
+:pusat/:tahun/:bulan/:hari/:slug
+:pusat/:tahun/:bulan/:slug
+:pusat/:tahun/:slug
+:id
+:id/:slug
+:slug
+:tahun/:bulan/:hari/:slug
+:tahun/:bulan/:slug
+:tahun/:slug
+~~~
+
+*[URL]: Uniform Resource Locator
+
+<!-- block:donate -->

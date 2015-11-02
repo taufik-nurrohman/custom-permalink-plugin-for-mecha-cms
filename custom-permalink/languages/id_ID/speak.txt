@@ -1,0 +1,2 @@
+plugin_custom_permalink_title_pattern: Pola <abbr title="Uniform Resource Locator">URL</abbr>
+plugin_custom_permalink_title_extension: Ekstensi

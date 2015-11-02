@@ -1,0 +1,33 @@
+Title: Custom Permalink
+Author: Taufik Nurrohman
+URL: http://latitudu.com
+Version: 1.0.0
+
+====
+
+> Custom permanent link.
+
+Permalink is a permanent link to your blog article. By default, **Mecha** allows you to modify the article URL pattern by changing the name of the base slug of the article URL to be like what you want via the configuration page. This plugin allows you to do more, not just to change the base slug name, but also to change the structure of the URL segment totally.
+
+#### Supported Patterns
+
+With or without extension.
+
+~~~ .no-highlight
+:base/:id
+:base/:id/:slug
+:base/:slug (default)
+:base/:year/:month/:day/:slug
+:base/:year/:month/:slug
+:base/:year/:slug
+:id
+:id/:slug
+:slug
+:year/:month/:day/:slug
+:year/:month/:slug
+:year/:slug
+~~~
+
+*[URL]: Uniform Resource Locator
+
+<!-- block:donate -->

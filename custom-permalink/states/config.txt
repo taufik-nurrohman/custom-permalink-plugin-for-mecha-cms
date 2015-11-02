@@ -1,0 +1,1 @@
+a:2:{s:7:"pattern";s:9:"base-slug";s:9:"extension";s:0:"";}
