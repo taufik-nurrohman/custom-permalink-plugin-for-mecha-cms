@@ -7,7 +7,7 @@ Version: 1.0.0
 
 > Custom permanent link.
 
-Permalink is a permanent link to your blog article. By default, **Mecha** allows you to modify the article URL pattern by changing the name of the base slug of the article URL to be like what you want via the configuration page. This plugin allows you to do more, not just to change the base slug name, but also to change the structure of the URL segment totally.
+Permalink is a permanent link to your blog article. By default, **Mecha** allows you to modify the article URL pattern by changing the name of the base slug of the article URL to be like what you want via the [configuration page]({{url.manager}}config "Configurations"). This plugin allows you to do more, not just to change the base slug name, but also to change the structure of the URL segment totally.
 
 #### Supported Patterns
 

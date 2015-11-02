@@ -7,7 +7,7 @@ Version: 1.0.0
 
 > Custom permanent link.
 
-_Permalink_ adalah tautan permanen pada artikel blog Anda. Pada dasarnya, **Mecha** mengizinkan Anda untuk mengubah pola URL artikel dengan cara mengubah nama slug pusat dari URL artikel menjadi seperti yang Anda inginkan melalui halaman konfigurasi. Plugin ini memungkinkan Anda untuk melakukan lebih dari itu, bukan hanya untuk mengubah nama slug pusat, tetapi juga untuk mengubah struktur segmen URL secara total.
+_Permalink_ adalah tautan permanen pada artikel blog Anda. Pada dasarnya, **Mecha** mengizinkan Anda untuk mengubah pola URL artikel dengan cara mengubah nama slug pusat dari URL artikel menjadi seperti yang Anda inginkan melalui [halaman konfigurasi]({{url.manager}}config "Konfigurasi"). Plugin ini memungkinkan Anda untuk melakukan lebih dari itu, bukan hanya untuk mengubah nama slug pusat, tetapi juga untuk mengubah struktur segmen URL secara total.
 
 #### Pola yang Tersedia
 
