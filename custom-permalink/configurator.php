@@ -1,5 +1,5 @@
 <form class="form-plugin" id="form-plugin" action="<?php echo $config->url_current; ?>/update" method="post">
-  <?php echo Form::hidden('token', $token); $cp_config = File::open(PLUGIN . DS . File::B(__DIR__) . DS . 'states' . DS . 'config.txt')->unserialize(); ?>
+  <?php echo Form::hidden('token', $token); $cp_config = File::open(__DIR__ . DS . 'states' . DS . 'config.txt')->unserialize(); ?>
   <div class="grid-group">
     <h3><?php echo $speak->preview; ?></h3>
     <div id="form-plugin-preview-area" style="display:block;background-color:#FFFFAA;border:1px dashed #F0D8A7;font:normal normal 100%/1em 'Courier New',Courier,'Numbus Mono L',Monospace;color:black;padding:1.4em 1.6em;letter-spacing:0;text-shadow:none;">&hellip;</div>
@@ -10,8 +10,7 @@
     <?php
 
     $options = array();
-    $dates = explode('.', date('Y.m.d'));
-    foreach(glob(PLUGIN . DS . File::B(__DIR__) . DS . 'workers' . DS . '*.php', GLOB_NOSORT) as $pattern) {
+    foreach(glob(__DIR__ . DS . 'workers' . DS . '*.php', GLOB_NOSORT) as $pattern) {
         $pattern = File::N($pattern);
         $options[$pattern] = ':' . str_replace('-', '/:', $pattern);
     }

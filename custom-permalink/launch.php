@@ -1,10 +1,10 @@
 <?php
 
 // configuration data
-$cp_config = File::open(PLUGIN . DS . File::B(__DIR__) . DS . 'states' . DS . 'config.txt')->unserialize();
+$cp_config = File::open(__DIR__ . DS . 'states' . DS . 'config.txt')->unserialize();
 
 // include custom route
-if($cp_route = File::exist(PLUGIN . DS . File::B(__DIR__) . DS . 'workers' . DS . $cp_config['pattern'] . '.php')) {
+if($cp_route = File::exist(__DIR__ . DS . 'workers' . DS . $cp_config['pattern'] . '.php')) {
     // include ...
     require $cp_route;
     // re-write article URL
@@ -12,7 +12,8 @@ if($cp_route = File::exist(PLUGIN . DS . File::B(__DIR__) . DS . 'workers' . DS 
     // re-write comment permalink
     Filter::add('comment:permalink', function($url) {
         $url = explode('#', $url);
-        return do_custom_permalink($url[0]) . (isset($url[1]) && trim($url[1]) !== "" ? '#' . $url[1] : "");
+        $url[0] = do_custom_permalink($url[0]);
+        return implode('#', $url);
     });
     // re-write blog pager URL
     if($config->page_type === 'article') {
