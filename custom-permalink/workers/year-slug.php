@@ -10,7 +10,7 @@ Route::accept('(:num)/(:any)' . $cp_config['extension'], function($year = "", $s
     if($path = Get::articlePath($slug)) {
         $s = explode('_', File::N($path));
         $s = explode('-', $s[0]);
-        if((string) $year !== (string) $s[0]) {
+        if((int) $year !== (int) $s[0]) {
             Shield::abort('404-article');
         }
     } else {

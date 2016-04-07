@@ -11,8 +11,8 @@ Route::accept($config->index->slug . '/(:num)/(:num)/(:any)' . $cp_config['exten
         $s = explode('_', File::N($path));
         $s = explode('-', $s[0]);
         if(
-            (string) $year !== (string) $s[0] ||
-            (string) $month !== (string) $s[1]
+            (int) $year !== (int) $s[0] ||
+            (int) $month !== (int) $s[1]
         ) {
             Shield::abort('404-article');
         }
