@@ -1,2 +1,4 @@
-plugin_custom_permalink_title_pattern: Pattern
-plugin_custom_permalink_title_extension: Extension
+plugin_custom_permalink:
+  title:
+    pattern: Pattern
+    extension: Extension

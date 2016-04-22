@@ -6,15 +6,11 @@ if($config->page_type === 'article' && Route::is($config->index->slug . '/(:any)
 }
 
 // pattern: `http://localhost/2015/04/21/slug`
-Route::accept('(:num)/(:num)/(:num)/(:any)' . $cp_config['extension'], function($year = "", $month = "", $day = "", $slug = "") use($config) {
+Route::accept('(:num)/(:num)/(:num)/(:any)' . $c_cp->extension, function($year = "", $month = "", $day = "", $slug = "") use($config) {
     if($path = Get::articlePath($slug)) {
         $s = explode('_', File::N($path));
         $s = explode('-', $s[0]);
-        if(
-            (string) $year !== (string) $s[0] ||
-            (string) $month !== (string) $s[1] ||
-            (string) $day !== (string) $s[2]
-        ) {
+        if(File::D($config->url_path) !== $s[0] . '/' . $s[1] . '/' . $s[2]) {
             Shield::abort('404-article');
         }
     } else {
@@ -25,18 +21,18 @@ Route::accept('(:num)/(:num)/(:num)/(:any)' . $cp_config['extension'], function(
 
 // from: `http://localhost/article/slug`
 // to: `http://localhost/2015/04/21/slug`
-function do_custom_permalink($url) {
-    global $config, $cp_config;
+function do_cp($url) {
+    global $config, $c_cp;
     if($path = Get::articlePath(File::B($url))) {
-        list($time, $kind, $slug) = explode('_', File::N($path), 3);
-        $time = explode('-', $time);
-        return $config->url . '/' . $time[0] . '/' . $time[1] . '/' . $time[2] . '/' . $slug . $cp_config['extension'];
+        list($t, $k, $s) = explode('_', File::N($path), 3);
+        $t = explode('-', $t);
+        return $config->url . '/' . $t[0] . '/' . $t[1] . '/' . $t[2] . '/' . $s . $c_cp->extension;
     }
     return $url;
 }
 
 // fix page types
-if(Route::is('(:num)/(:num)/(:num)/(:any)' . $cp_config['extension'])) {
+if(Route::is('(:num)/(:num)/(:num)/(:any)' . $c_cp->extension)) {
     $config->page_type = Get::articlePath(File::N($config->url_path)) ? 'article' : 'page';
     Config::set('page_type', $config->page_type);
 }

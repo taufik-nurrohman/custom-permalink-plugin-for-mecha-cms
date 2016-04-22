@@ -6,14 +6,14 @@ if($config->page_type === 'article' && Route::is($config->index->slug . '/(:any)
 }
 
 // pattern: `http://localhost/slug`
-if($cp_config['extension'] === "") {
+if($c_cp->extension === "") {
     Route::over('(:any)', function($slug) use($config) {
         if( ! is_numeric($slug) && Get::articlePath($slug)) {
             Route::execute($config->index->slug . '/(:any)', array($slug));
         }
     });
 } else {
-    Route::accept('(:any)' . $cp_config['extension'], function($slug) use($config) {
+    Route::accept('(:any)' . $c_cp->extension, function($slug) use($config) {
         if( ! is_numeric($slug) && Get::articlePath($slug)) {
             Route::execute($config->index->slug . '/(:any)', array($slug));
         }
@@ -22,9 +22,9 @@ if($cp_config['extension'] === "") {
 
 // from: `http://localhost/article/slug`
 // to: `http://localhost/slug`
-function do_custom_permalink($url) {
-    global $config, $cp_config;
-    return str_replace('/' . $config->index->slug . '/', '/', $url) . $cp_config['extension'];
+function do_cp($url) {
+    global $config, $c_cp;
+    return str_replace('/' . $config->index->slug . '/', '/', $url) . $c_cp->extension;
 }
 
 // fix page types

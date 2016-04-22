@@ -1,40 +1,36 @@
-<form class="form-plugin" id="form-plugin" action="<?php echo $config->url_current; ?>/update" method="post">
-  <?php echo Form::hidden('token', $token); $cp_config = File::open(__DIR__ . DS . 'states' . DS . 'config.txt')->unserialize(); ?>
-  <div class="grid-group">
-    <h3><?php echo $speak->preview; ?></h3>
-    <div id="form-plugin-preview-area" style="display:block;background-color:#FFFFAA;border:1px dashed #F0D8A7;font:normal normal 100%/1em 'Courier New',Courier,'Numbus Mono L',Monospace;color:black;padding:1.4em 1.6em;letter-spacing:0;text-shadow:none;">&hellip;</div>
-  </div>
-  <label class="grid-group">
-    <span class="grid span-1 form-label"><?php echo $speak->plugin_custom_permalink_title_pattern; ?></span>
-    <span class="grid span-5">
-    <?php
+<?php $c_cp = $config->states->{'plugin_' . md5(File::B(__DIR__))}; ?>
+<div class="grid-group">
+  <div class="grid span-6">
+      <h3><?php echo $speak->preview; ?></h3>
+  <div id="form-plugin-preview-area" style="display:block;background-color:#FFFFAA;border:1px dashed #F0D8A7;font:normal normal 100%/1em 'Courier New',Courier,'Numbus Mono L',Monospace;color:black;padding:1.4em 1.6em;letter-spacing:0;text-shadow:none;">&hellip;</div>
+    </div>
+</div>
+<label class="grid-group">
+  <span class="grid span-1 form-label"><?php echo $speak->plugin_custom_permalink->title->pattern; ?></span>
+  <span class="grid span-5">
+  <?php
 
-    $options = array();
-    foreach(glob(__DIR__ . DS . 'workers' . DS . '*.php', GLOB_NOSORT) as $pattern) {
-        $pattern = File::N($pattern);
-        $options[$pattern] = ':' . str_replace('-', '/:', $pattern);
-    }
+  $options = array();
+  foreach(glob(__DIR__ . DS . 'workers' . DS . '*.php', GLOB_NOSORT) as $pattern) {
+      $pattern = File::N($pattern);
+      $options[$pattern] = ':' . str_replace('-', '/:', $pattern);
+  }
 
-    ksort($options);
+  ksort($options);
 
-    echo Form::select('pattern', $options, $cp_config['pattern']);
+  echo Form::select('pattern', $options, $c_cp->pattern);
 
-    ?>
-    </span>
-  </label>
-  <label class="grid-group">
-    <span class="grid span-1 form-label"><?php echo $speak->plugin_custom_permalink_title_extension; ?></span>
-    <span class="grid span-5"><?php echo Form::text('extension', $cp_config['extension'], '.html'); ?></span>
-  </label>
-  <div class="grid-group">
-    <span class="grid span-1"></span>
-    <span class="grid span-5"><?php echo Jot::button('action', $speak->update); ?></span>
-  </div>
-</form>
+  ?>
+  </span>
+</label>
+<label class="grid-group">
+  <span class="grid span-1 form-label"><?php echo $speak->plugin_custom_permalink->title->extension; ?></span>
+  <span class="grid span-5"><?php echo Form::text('extension', $c_cp->extension, '.html'); ?></span>
+</label>
 <?php $dates = explode('.', date('Y.m.d')); ?>
 <script>
 (function(w, d) {
-    var form = d.getElementById('form-plugin'),
+    var form = d.getElementsByClassName('form-plugin')[0],
         pattern = form.pattern,
         extension = form.extension,
         area = d.getElementById('form-plugin-preview-area');
@@ -49,6 +45,7 @@
     extension.onpaste = preview;
     extension.onchange = preview;
     extension.onblur = preview;
+    extension.oninput = preview;
     preview();
 })(window, document);
 </script>

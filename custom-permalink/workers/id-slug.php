@@ -6,7 +6,7 @@ if($config->page_type === 'article' && Route::is($config->index->slug . '/(:any)
 }
 
 // pattern: `http://localhost/123/slug`
-Route::accept('(:num)/(:any)' . $cp_config['extension'], function($id = "", $slug = "") use($config) {
+Route::accept('(:num)/(:any)' . $c_cp->extension, function($id = "", $slug = "") use($config) {
     if( ! Get::articlePath($id)) {
         Shield::abort('404-article');
     }
@@ -15,17 +15,17 @@ Route::accept('(:num)/(:any)' . $cp_config['extension'], function($id = "", $slu
 
 // from: `http://localhost/article/slug`
 // to: `http://localhost/123/slug`
-function do_custom_permalink($url) {
-    global $config, $cp_config;
+function do_cp($url) {
+    global $config, $c_cp;
     $path = Get::articlePath(File::B($url));
     if($path = Get::articleExtract($path)) {
-        return $config->url . '/' . $path['id'] . '/' . $path['slug'] . $cp_config['extension'];
+        return $config->url . '/' . $path['id'] . '/' . $path['slug'] . $c_cp->extension;
     }
     return $url;
 }
 
 // fix page types
-if(Route::is('(:num)/(:any)' . $cp_config['extension'])) {
+if(Route::is('(:num)/(:any)' . $c_cp->extension)) {
     $config->page_type = Get::articlePath(File::N($config->url_path)) ? 'article' : 'page';
     Config::set('page_type', $config->page_type);
 }
